@@ -9,21 +9,28 @@
 
 <ion-content>
   <ion-card *ngFor="let item of 
-dataMahasiswa">
-    <ion-item>
+dataMahasiswa; index as i">
+    <ion-item style="padding: 1px;">
+      <ion-badge style="margin: 6px;">
+        {{ i+1 }}
+      </ion-badge>
       <ion-label>
         {{item.nama}}
         <p>{{item.jurusan}}</p>
       </ion-label>
-      <ion-button expand="block" (click)="open_modal_edit(true,item.id)">Edit</ion-button>
+      <ion-button expand="block" (click)="open_modal_edit(true,item.id)" color="warning">Edit</ion-button>
       <ion-button color="danger" slot="end" (click)="hapusMahasiswa(item.id)">Hapus</ion-button>
     </ion-item>
   </ion-card>
 </ion-content>
 
-<ion-card>
-  <ion-button (click)="open_modal_tambah(true)" expand="block">Tambah Mahasiswa</ion-button>
-</ion-card>
+<ion-fab vertical="bottom" horizontal="end">
+  <ion-fab-button (click)="open_modal_tambah(true)" size="large">
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+
 <!-- ini untuk modal tambah -->
 <ion-modal [isOpen]="modal_tambah">
   <ng-template>
@@ -88,4 +95,4 @@ dataMahasiswa">
       </ion-row>
     </ion-content>
   </ng-template>
-</ion-modal>s
+</ion-modal>
